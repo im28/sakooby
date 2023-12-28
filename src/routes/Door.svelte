@@ -1,4 +1,5 @@
-<script lang="ts">
+<script lang="ts" >
+	import Whirl from './Whirl.svelte';
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
 	import { type Rive } from '@rive-app/canvas';
@@ -61,5 +62,6 @@
 </script>
 
 <div id="canvas_parent" on:click={handleClick} on:keydown role="button" tabindex="0">
-	<canvas id="rive_canvas" class=" min-w-full min-h-full"></canvas>
+	<canvas id="rive_canvas" class=" min-w-full min-h-full"> </canvas>
+	<Whirl />
 </div>
