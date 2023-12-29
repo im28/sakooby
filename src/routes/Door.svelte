@@ -9,11 +9,12 @@
 	onMount(async () => {
 		const { Rive, Layout, Fit, Alignment, EventType } = await import('@rive-app/canvas');
 		const canvasElement = document.getElementById('rive_canvas') as HTMLCanvasElement;
+		let isDev = import.meta.env.MODE === 'development';
 		riveInstance = new Rive({
 			onLoad: () => {
 				riveInstance.resizeDrawingSurfaceToCanvas();
 			},
-			src: '/door_opening_and_closing.riv',
+			src: isDev ? '/door_opening_and_closing.riv' : '/sakooby/door_opening_and_closing.riv',
 			canvas: canvasElement,
 			autoplay: true,
 			artboard: 'New Artboard',
