@@ -20,10 +20,12 @@
 	});
 	$: className = whirlVisible ? 'animate-fade animate-reverse animate-delay-[4300ms]' : '';
 	let hasRun = false;
+	let hidden = false;
 	$: {
 		if (whirlVisible && !hasRun) {
 			setTimeout(() => {
 				className += ' hidden ';
+				hidden = true;
 			}, 6000);
 			hasRun = true;
 		}
@@ -39,11 +41,13 @@
 	{#each Array(100) as _, i}
 		<div class="particle"></div>
 	{/each}
-	<Ask className=""/>
-	<!-- <div class={'fixed inset-0 flex items-center flex-col justify-center p-[15%] ' + className}>
+	{#if hidden}
+		<Ask />
+	{/if}
+	<div class={'fixed inset-0 flex items-center flex-col justify-center p-[15%] ' + className}>
 		<Sakooby className="stroke-pink-300" />
 		<Door bind:riveInstance bind:whirlVisible />
-	</div> -->
+	</div>
 </div>
 
 <style>
