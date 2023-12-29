@@ -1,9 +1,11 @@
-<script lang="ts" >
+<script lang="ts">
+	import { fade } from 'svelte/transition';
 	import Whirl from './Whirl.svelte';
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
 	import { type Rive } from '@rive-app/canvas';
 	export let riveInstance: Rive;
+	export let whirlVisible = false;
 	onMount(async () => {
 		const { Rive, Layout, Fit, Alignment, EventType } = await import('@rive-app/canvas');
 		const canvasElement = document.getElementById('rive_canvas') as HTMLCanvasElement;
@@ -43,10 +45,11 @@
 			if (e.data == 'Fully Open') {
 				const canvas_parent = document.getElementById('canvas_parent');
 				gsap.to(canvas_parent, {
-					scale: 20,
+					scale: 21,
 					duration: 8,
 					delay: 3
 				});
+				whirlVisible = true;
 			}
 		});
 		// return () => {
@@ -63,5 +66,9 @@
 
 <div id="canvas_parent" on:click={handleClick} on:keydown role="button" tabindex="0">
 	<canvas id="rive_canvas" class=" min-w-full min-h-full"> </canvas>
-	<Whirl />
+	{#if whirlVisible}
+		<div transition:fade={{ duration: 1000, delay: 3000 }}>
+			<Whirl />
+		</div>
+	{/if}
 </div>

@@ -2,7 +2,7 @@
 	"name": "sakooby",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --host",
 		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
@@ -34,6 +34,7 @@
 	"dependencies": {
 		"@rive-app/canvas": "^2.9.0",
 		"gsap": "^3.12.4",
+		"tailwindcss-animated": "^1.0.1",
 		"three": "^0.160.0"
 	}
 }
