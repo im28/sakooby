@@ -33,8 +33,8 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Sakooby ❤️</title>
+	<meta name="description" content="❤️" />
 </svelte:head>
 
 <div class="fixed inset-0 bg-black">
