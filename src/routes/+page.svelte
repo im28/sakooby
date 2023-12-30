@@ -21,12 +21,12 @@
 	});
 	$: className = whirlVisible ? 'animate-fade animate-reverse animate-delay-[4300ms]' : '';
 	let hasRun = false;
-	let hidden = false;
+	let hidden = true;
 	$: {
 		if (whirlVisible && !hasRun) {
 			setTimeout(() => {
 				className += ' hidden ';
-				hidden = true;
+				hidden = false;
 			}, 6000);
 			hasRun = true;
 		}
@@ -46,11 +46,10 @@
 		id="ask"
 		src={phone}
 		alt="ask"
-		transition:fade={{ duration: 1000, delay: 3000 }}
-		class={!hidden ? 'hidden' : 'block'}
+		class={hidden ? 'hidden' : 'block animate-fade animate-duration-1000'}
 	/>
 	<!-- {#if hidden} -->
-		<!-- <Ask /> -->
+	<!-- <Ask /> -->
 	<!-- {/if} -->
 	<div class={'fixed inset-0 flex items-center flex-col justify-center p-[15%] ' + className}>
 		<Sakooby className="stroke-pink-300" />
