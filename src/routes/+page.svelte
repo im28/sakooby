@@ -6,6 +6,7 @@
 	import type { Rive } from '@rive-app/canvas';
 	import { fade } from 'svelte/transition';
 	import Ask from './Ask.svelte';
+	import phone from '$lib/images/Phone.png?enhanced';
 
 	let riveInstance: Rive;
 	let whirlVisible = false;
@@ -42,7 +43,8 @@
 		<div class="particle"></div>
 	{/each}
 	{#if hidden}
-		<Ask />
+		<!-- <Ask /> -->
+		<enhanced:img id="ask" src={phone} alt="ask" transition:fade={{ duration: 1000, delay: 3000 }} />
 	{/if}
 	<div class={'fixed inset-0 flex items-center flex-col justify-center p-[15%] ' + className}>
 		<Sakooby className="stroke-pink-300" />
