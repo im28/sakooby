@@ -1,5 +1,5 @@
 <script>
-	import phone from '$lib/images/Phone.png';
+	import phone from '$lib/images/Phone.png?enhanced';
 </script>
 
-<img id="ask" src={phone} alt="ask" class="animate-fade animate-duration-1000" />
+<enhanced:img id="ask" src={phone} alt="ask" class="animate-fade animate-duration-1000" />
