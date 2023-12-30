@@ -42,10 +42,16 @@
 	{#each Array(100) as _, i}
 		<div class="particle"></div>
 	{/each}
-	{#if hidden}
+	<enhanced:img
+		id="ask"
+		src={phone}
+		alt="ask"
+		transition:fade={{ duration: 1000, delay: 3000 }}
+		class={!hidden ? 'hidden' : 'block'}
+	/>
+	<!-- {#if hidden} -->
 		<!-- <Ask /> -->
-		<enhanced:img id="ask" src={phone} alt="ask" transition:fade={{ duration: 1000, delay: 3000 }} />
-	{/if}
+	<!-- {/if} -->
 	<div class={'fixed inset-0 flex items-center flex-col justify-center p-[15%] ' + className}>
 		<Sakooby className="stroke-pink-300" />
 		<Door bind:riveInstance bind:whirlVisible />
