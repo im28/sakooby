@@ -6,6 +6,7 @@
 	import { type Rive } from '@rive-app/canvas';
 	export let riveInstance: Rive;
 	export let whirlVisible = false;
+	export let riveReady = false;
 	onMount(async () => {
 		const { Rive, Layout, Fit, Alignment, EventType } = await import('@rive-app/canvas');
 		const canvasElement = document.getElementById('rive_canvas') as HTMLCanvasElement;
@@ -13,6 +14,7 @@
 		riveInstance = new Rive({
 			onLoad: () => {
 				riveInstance.resizeDrawingSurfaceToCanvas();
+				riveReady = true;
 			},
 			src: isDev ? '/door_opening_and_closing.riv' : '/sakooby/door_opening_and_closing.riv',
 			canvas: canvasElement,

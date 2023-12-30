@@ -10,18 +10,12 @@
 
 	let riveInstance: Rive;
 	let whirlVisible = false;
-	onMount(() => {
-		const particles = document.getElementsByClassName('particle');
-		for (let i = 0; i < particles.length; i++) {
-			const randomValue = Math.floor(Math.random() * 100);
-			const element = particles[i] as HTMLElement;
-			element.style.left = `${randomValue}vw`;
-			element.style.animationDelay = `${i / 2}s`;
-		}
-	});
+
 	$: className = whirlVisible ? 'animate-fade animate-reverse animate-delay-[4300ms]' : '';
 	let hasRun = false;
 	let hidden = true;
+	let riveReady = false;
+	$: mainClassName = riveReady ? 'bloc' : 'invisible';
 	$: {
 		if (whirlVisible && !hasRun) {
 			setTimeout(() => {
@@ -31,6 +25,15 @@
 			hasRun = true;
 		}
 	}
+	onMount(() => {
+		const particles = document.getElementsByClassName('particle');
+		for (let i = 0; i < particles.length; i++) {
+			const randomValue = Math.floor(Math.random() * 100);
+			const element = particles[i] as HTMLElement;
+			element.style.left = `${randomValue}vw`;
+			element.style.animationDelay = `${i / 4}s`;
+		}
+	});
 </script>
 
 <svelte:head>
@@ -39,21 +42,23 @@
 </svelte:head>
 
 <div class="fixed inset-0 bg-black">
-	{#each Array(100) as _, i}
+	{#each Array(20) as _}
 		<div class="particle"></div>
 	{/each}
-	<enhanced:img
-		id="ask"
-		src={phone}
-		alt="ask"
-		class={hidden ? 'hidden' : 'block animate-fade animate-duration-1000'}
-	/>
-	<!-- {#if hidden} -->
-	<!-- <Ask /> -->
-	<!-- {/if} -->
-	<div class={'fixed inset-0 flex items-center flex-col justify-center p-[15%] ' + className}>
-		<Sakooby className="stroke-pink-300" />
-		<Door bind:riveInstance bind:whirlVisible />
+	<div class={mainClassName}>
+		<enhanced:img
+			id="ask"
+			src={phone}
+			alt="ask"
+			class={hidden ? 'hidden' : 'block animate-fade animate-duration-1000'}
+		/>
+		<!-- {#if hidden} -->
+		<!-- <Ask /> -->
+		<!-- {/if} -->
+		<div class={'fixed inset-0 flex items-center flex-col justify-center p-[15%] ' + className}>
+			<Sakooby className="stroke-pink-300" />
+			<Door bind:riveReady bind:riveInstance bind:whirlVisible />
+		</div>
 	</div>
 </div>
 
