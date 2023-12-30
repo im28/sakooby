@@ -15,6 +15,11 @@
 			onLoad: () => {
 				riveInstance.resizeDrawingSurfaceToCanvas();
 				riveReady = true;
+				const timeoutId = setTimeout(() => {
+					const smInputs = riveInstance.stateMachineInputs('State Machine 1');
+					const toggleInput = smInputs[0];
+					toggleInput.value = !toggleInput.value;
+				}, 500);
 			},
 			src: isDev ? '/door_opening_and_closing.riv' : '/sakooby/door_opening_and_closing.riv',
 			canvas: canvasElement,
@@ -35,12 +40,6 @@
 				delay: 1.5
 			}
 		);
-
-		const timeoutId = setTimeout(() => {
-			const smInputs = riveInstance.stateMachineInputs('State Machine 1');
-			const toggleInput = smInputs[0];
-			toggleInput.value = !toggleInput.value;
-		}, 500);
 
 		riveInstance.on(EventType.StateChange, (e) => {
 			console.log(e);
